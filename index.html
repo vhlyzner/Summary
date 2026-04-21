@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>PRO-Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="editor">
+          <a href="https://vhlyzner.github.io/Portfolio/" class="back-link">
+    ← Назад до портфоліо
+          </a>
+            <h1>Конструктор Резюме</h1>
+            
+            <div class="controls">
+                <button onclick="setTheme('modern')">Modern</button>
+                <button onclick="setTheme('classic')">Classic</button>
+                <button class="download-btn" onclick="downloadPDF()">Завантажити PDF</button>
+            </div>
+
+            <section class="form-section">
+                <h3>Особисті дані</h3>
+                <input type="text" id="inName" placeholder="Повне ім'я" oninput="update()">
+                <input type="text" id="inJob" placeholder="Посада" oninput="update()">
+                <input type="email" id="inEmail" placeholder="Email" oninput="update()">
+            </section>
+
+            <section class="form-section">
+                <h3>Про себе</h3>
+                <textarea id="inAbout" placeholder="Коротко про ваші досягнення..." oninput="update()"></textarea>
+            </section>
+        </aside>
+
+        <main class="preview-area">
+            <div id="resume-canvas" class="resume-page modern">
+                <header>
+                    <h1 id="outName">Ваше Ім'я</h1>
+                    <p id="outJob" class="subtitle">Ваша Посада</p>
+                </header>
+
+                <div class="resume-body">
+                    <div class="side-col">
+                        <h4>Контакти</h4>
+                        <p id="outEmail">email@example.com</p>
+                    </div>
+                    <div class="main-col">
+                        <h4>Професійний профіль</h4>
+                        <p id="outAbout">Тут з'явиться опис ваших скілів...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
