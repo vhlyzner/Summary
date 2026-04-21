@@ -1,50 +1,40 @@
-function update() {
-    document.getElementById('outName').innerText = document.getElementById('inName').value || "Ваше Ім'я";
-    document.getElementById('outJob').innerText = document.getElementById('inJob').value || "Посада";
-    document.getElementById('outPhone').innerText = document.getElementById('inPhone').value || "+380...";
-    document.getElementById('outLocation').innerText = document.getElementById('inLocation').value || "Місто";
-    document.getElementById('outAbout').innerText = document.getElementById('inAbout').value || "Опис...";
-
-    // Обробка навичок
-    const skills = document.getElementById('inSkills').value.split(',');
-    const list = document.getElementById('outSkillsList');
-    list.innerHTML = "";
-    skills.forEach(s => {
-        if(s.trim()) {
-            let li = document.createElement('li');
-            li.innerText = s.trim();
-            list.appendChild(li);
-        }
-    });
+// Зміна стилю аркуша
+function changeStyle(styleName) {
+    const resume = document.getElementById('resume');
+    resume.className = 'resume-sheet ' + styleName;
 }
 
-// AI Рерайтер (Симуляція)
-function rewriteText(mode) {
-    const textarea = document.getElementById('inAbout');
-    let text = textarea.value;
-    if (!text) return;
-
-    // Словник для заміни (простий приклад "магії" JS)
-    if (mode === 'pro') {
-        text = "Досвідчений фахівець з високим рівнем відповідальності. " + text.replace("я вмію", "володію компетенціями у сфері");
-    } else {
-        text = "Привіт! Я дуже люблю свою справу і завжди відкритий до нових крутих проектів. " + text;
+// "AI" Рерайтер
+function improveAI(tone) {
+    const selection = window.getSelection();
+    if (!selection.toString()) {
+        alert("Спершу виділіть текст, який хочете змінити!");
+        return;
     }
+
+    let text = selection.toString();
     
-    textarea.value = text;
-    update();
+    // Симуляція логіки AI
+    if (tone === 'pro') {
+        text = "Маю значний досвід у сфері та високий рівень професійної експертизи. " + text.replace(/я/g, "фахівець");
+    } else if (tone === 'chill') {
+        text = "Привіт! Я творча людина, обожнюю круті виклики та драйвову роботу. ✨ " + text;
+    }
+
+    // Заміна виділеного тексту
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(document.createTextNode(text));
 }
 
-function setTheme(theme) {
-    document.getElementById('resume-canvas').className = 'resume-page ' + theme;
-}
-
-function downloadPDF() {
-    const element = document.getElementById('resume-canvas');
-    html2pdf().from(element).set({
+// Експорт
+function exportPDF() {
+    const element = document.getElementById('resume');
+    const opt = {
         margin: 0,
-        filename: 'resume_pro.pdf',
-        html2canvas: { scale: 2 },
-        jsPDF: { format: 'a4', orientation: 'portrait' }
-    }).save();
+        filename: 'my_resume.pdf',
+        html2canvas: { scale: 3 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
 }
