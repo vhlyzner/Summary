@@ -1,51 +1,40 @@
 :root {
-    --primary: #2563eb;
-    --text: #1f2937;
-    --bg-app: #f3f4f6;
+    --accent: #2563eb;
+    --dark: #1e293b;
+    --text: #334155;
+    --white: #ffffff;
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--bg-app); margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: #e2e8f0; }
+
 .app { display: flex; height: 100vh; }
 
-/* Редактор */
-.editor { width: 400px; background: white; padding: 30px; border-right: 1px solid #ddd; overflow-y: auto; }
-.form-section { margin-top: 25px; }
-input, textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #d1d5db; border-radius: 6px; }
+.editor { width: 380px; background: var(--white); padding: 25px; overflow-y: auto; box-shadow: 5px 0 15px rgba(0,0,0,0.05); }
+.form-group { margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
+h3 { font-size: 14px; color: var(--dark); text-transform: uppercase; margin-bottom: 10px; }
+input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
 
-/* Зона превью */
-.preview-area { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 40px; overflow-y: auto; }
+/* AI кнопки */
+.ai-controls { display: flex; gap: 5px; margin-top: 5px; }
+.ai-controls button { flex: 1; padding: 6px; font-size: 11px; border-radius: 5px; border: 1px solid var(--accent); background: transparent; cursor: pointer; }
+.ai-controls button:hover { background: var(--accent); color: white; }
 
-/* Імітація листа А4 */
-.resume-page {
-    width: 210mm; min-height: 297mm;
-    background: white; padding: 20mm;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
+/* Прев'ю */
+.preview-area { flex: 1; display: flex; justify-content: center; padding: 40px; overflow-y: auto; }
+.resume-page { width: 210mm; min-height: 297mm; background: white; display: flex; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
 
-/* ТЕМИ */
-.modern { border-top: 15px solid var(--primary); }
-.modern h1 { color: var(--primary); font-size: 32px; }
+/* --- ТЕМА MODERN --- */
+.modern .left-aside { width: 35%; background: var(--dark); color: white; padding: 40px 20px; }
+.modern .main-content { width: 65%; padding: 40px; }
+.modern h1 { font-size: 38px; color: var(--dark); border-bottom: 4px solid var(--accent); display: inline-block; }
 
-.classic { font-family: 'Times New Roman', serif; border: 2px solid #000; }
-.classic h1 { text-align: center; border-bottom: 1px solid #000; }
+/* --- ТЕМА CLASSIC --- */
+.classic { flex-direction: column; padding: 60px; font-family: 'Georgia', serif; }
+.classic .left-aside, .classic .main-content { width: 100%; background: transparent; color: black; padding: 0; }
+.classic header { text-align: center; border-bottom: 2px solid #000; margin-bottom: 30px; }
+.classic h1 { font-size: 32px; text-transform: uppercase; }
 
-.download-btn { background: #10b981; color: white; border: none; cursor: pointer; }
-.back-link {
-    display: inline-block;
-    text-decoration: none;
-    color: #666;
-    font-size: 13px;
-    margin-bottom: 20px;
-    font-weight: 500;
-    transition: 0.3s;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background: #f9fafb;
-}
-
-.back-link:hover {
-    color: var(--primary);
-    background: #eff6ff;
-    transform: translateX(-3px); /* Легкий рух вліво при наведенні */
-}
+/* --- ТЕМА CREATIVE --- */
+.creative { background: #fff5f5; border: 10px solid #ff6b6b; padding: 40px; }
+.creative h1 { color: #ff6b6b; font-family: 'cursive'; }
