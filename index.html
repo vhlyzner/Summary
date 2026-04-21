@@ -2,58 +2,84 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>PRO-Resume Builder</title>
+    <title>Ultimate Resume Builder | AI Powered</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <div class="app">
         <aside class="editor">
-          <a href="https://vhlyzner.github.io/Portfolio/" class="back-link">
-    ← Назад до портфоліо
-          </a>
-            <h1>Конструктор Резюме</h1>
+            <a href="https://vhlyzner.github.io/Portfolio/" class="back-link">← До портфоліо</a>
+            <h2>Конструктор Резюме</h2>
             
-            <div class="controls">
-                <button onclick="setTheme('modern')">Modern</button>
-                <button onclick="setTheme('classic')">Classic</button>
-                <button class="download-btn" onclick="downloadPDF()">Завантажити PDF</button>
+            <div class="theme-selector">
+                <button onclick="setTheme('modern')" class="t-btn">Modern Pro</button>
+                <button onclick="setTheme('classic')" class="t-btn">Classic Elite</button>
+                <button onclick="setTheme('creative')" class="t-btn">Creative Mind</button>
             </div>
 
-            <section class="form-section">
-                <h3>Особисті дані</h3>
-                <input type="text" id="inName" placeholder="Повне ім'я" oninput="update()">
-                <input type="text" id="inJob" placeholder="Посада" oninput="update()">
-                <input type="email" id="inEmail" placeholder="Email" oninput="update()">
-            </section>
+            <div class="form-group">
+                <h3>Контакти</h3>
+                <input type="text" id="inName" placeholder="Прізвище та Ім'я" oninput="update()">
+                <input type="text" id="inJob" placeholder="Бажана посада" oninput="update()">
+                <input type="text" id="inPhone" placeholder="Телефон" oninput="update()">
+                <input type="text" id="inLocation" placeholder="Місто" oninput="update()">
+            </div>
 
-            <section class="form-section">
-                <h3>Про себе</h3>
-                <textarea id="inAbout" placeholder="Коротко про ваші досягнення..." oninput="update()"></textarea>
-            </section>
+            <div class="form-group ai-section">
+                <h3>Про себе (AI Помічник)</h3>
+                <textarea id="inAbout" placeholder="Напишіть будь-як, а ми виправимо..." oninput="update()"></textarea>
+                <div class="ai-controls">
+                    <button onclick="rewriteText('pro')">👔 Професійно</button>
+                    <button onclick="rewriteText('friendly')">👋 Дружньо</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3>Навички (через кому)</h3>
+                <input type="text" id="inSkills" placeholder="Figma, JS, Python..." oninput="update()">
+            </div>
+
+            <button class="download-btn" onclick="downloadPDF()">Завантажити PDF</button>
         </aside>
 
         <main class="preview-area">
             <div id="resume-canvas" class="resume-page modern">
-                <header>
-                    <h1 id="outName">Ваше Ім'я</h1>
-                    <p id="outJob" class="subtitle">Ваша Посада</p>
-                </header>
-
-                <div class="resume-body">
-                    <div class="side-col">
+                <div class="left-aside">
+                    <div class="avatar-stub"></div>
+                    <section>
                         <h4>Контакти</h4>
-                        <p id="outEmail">email@example.com</p>
-                    </div>
-                    <div class="main-col">
+                        <p id="outPhone">+380 ...</p>
+                        <p id="outLocation">Україна</p>
+                    </section>
+                    <section>
+                        <h4>Навички</h4>
+                        <ul id="outSkillsList"></ul>
+                    </section>
+                </div>
+
+                <div class="main-content">
+                    <header>
+                        <h1 id="outName">Ваше Ім'я</h1>
+                        <p id="outJob" class="job-title">Senior Developer</p>
+                    </header>
+                    
+                    <section class="bio">
                         <h4>Професійний профіль</h4>
-                        <p id="outAbout">Тут з'явиться опис ваших скілів...</p>
-                    </div>
+                        <p id="outAbout">Тут з'явиться ваш опис...</p>
+                    </section>
+
+                    <section class="experience">
+                        <h4>Досвід роботи</h4>
+                        <div class="exp-item">
+                            <strong>Назва компанії</strong> | 2024 - Тепер
+                            <p>Опишіть ваші обов'язки та досягнення на цій позиції.</p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
