@@ -1,40 +1,51 @@
 :root {
-    --accent: #2563eb;
-    --dark: #1e293b;
-    --text: #334155;
-    --white: #ffffff;
+    --primary: #000;
+    --accent: #5e17eb;
+    --gray: #f4f4f4;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background: #e2e8f0; }
+* { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+body { background: #111; font-family: 'Inter', sans-serif; color: #fff; }
 
-.app { display: flex; height: 100vh; }
+/* Верхня панель керування */
+.toolbar {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    padding: 10px 25px; border-radius: 50px; display: flex; gap: 20px;
+    z-index: 100; border: 1px solid rgba(255,255,255,0.1);
+}
 
-.editor { width: 380px; background: var(--white); padding: 25px; overflow-y: auto; box-shadow: 5px 0 15px rgba(0,0,0,0.05); }
-.form-group { margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
-h3 { font-size: 14px; color: var(--dark); text-transform: uppercase; margin-bottom: 10px; }
-input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+.toolbar button {
+    background: transparent; border: none; color: #fff; cursor: pointer;
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+}
 
-/* AI кнопки */
-.ai-controls { display: flex; gap: 5px; margin-top: 5px; }
-.ai-controls button { flex: 1; padding: 6px; font-size: 11px; border-radius: 5px; border: 1px solid var(--accent); background: transparent; cursor: pointer; }
-.ai-controls button:hover { background: var(--accent); color: white; }
+.save-btn { color: var(--accent) !important; }
 
-/* Прев'ю */
-.preview-area { flex: 1; display: flex; justify-content: center; padding: 40px; overflow-y: auto; }
-.resume-page { width: 210mm; min-height: 297mm; background: white; display: flex; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+/* Обгортка аркуша */
+.canvas-wrapper { padding-top: 100px; padding-bottom: 50px; display: flex; justify-content: center; }
 
-/* --- ТЕМА MODERN --- */
-.modern .left-aside { width: 35%; background: var(--dark); color: white; padding: 40px 20px; }
-.modern .main-content { width: 65%; padding: 40px; }
-.modern h1 { font-size: 38px; color: var(--dark); border-bottom: 4px solid var(--accent); display: inline-block; }
+.resume-sheet {
+    width: 210mm; min-height: 297mm; background: #fff; color: #000;
+    padding: 20mm; box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-/* --- ТЕМА CLASSIC --- */
-.classic { flex-direction: column; padding: 60px; font-family: 'Georgia', serif; }
-.classic .left-aside, .classic .main-content { width: 100%; background: transparent; color: black; padding: 0; }
-.classic header { text-align: center; border-bottom: 2px solid #000; margin-bottom: 30px; }
-.classic h1 { font-size: 32px; text-transform: uppercase; }
+/* СТИЛІ ТЕМ */
+.minimal h1 { font-size: 48px; font-weight: 800; letter-spacing: -2px; }
+.minimal .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 40px; }
+.minimal h3 { font-size: 12px; border-bottom: 2px solid #000; margin-bottom: 15px; padding-bottom: 5px; }
 
-/* --- ТЕМА CREATIVE --- */
-.creative { background: #fff5f5; border: 10px solid #ff6b6b; padding: 40px; }
-.creative h1 { color: #ff6b6b; font-family: 'cursive'; }
+/* Стиль Executive (Строгий) */
+.executive { font-family: 'Serif'; border: 1px solid #ddd; }
+.executive header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 30px; }
+.executive .main-grid { display: block; }
+.executive h3 { background: #333; color: #fff; padding: 5px 10px; }
+
+/* Стиль Vibe (Творчий) */
+.vibe { background: linear-gradient(to right, #fff 70%, var(--gray) 30%); }
+.vibe h1 { color: var(--accent); }
+.vibe section { margin-bottom: 30px; }
+
+/* Ефект при фокусі на тексті */
+[contenteditable]:focus { background: rgba(94, 23, 235, 0.05); border-radius: 4px; }
